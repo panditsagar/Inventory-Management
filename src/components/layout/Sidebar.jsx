@@ -72,7 +72,7 @@ const Sidebar = () => {
                                     </span>
                                     {submenu.subitems && (
                                         <span className="ml-2 text-sm text-blue-600">
-                                            {activeSubMenu === submenu.label ? '-' : '+'}
+                                            {/* {activeSubMenu === submenu.label ? '-' : '+'} */}
                                         </span>
                                     )}
                                 </div>
