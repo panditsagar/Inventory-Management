@@ -1,28 +1,34 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import menus from '../../configs/menus';
 
 const Sidebar = () => {
-    const [isEventOpen, setIsEventOpen] = useState(false);
-    const [isTransactionOpen, setIsTransactionOpen] = useState(false);
+    const [activeMenu, setActiveMenu] = useState(null);
+    const [activeSubMenu, setActiveSubMenu] = useState(null);
+    const sidebarRef = useRef(null);
+    const navigate = useNavigate();
 
-    const sidebarRef = useRef(null);  // We track the entire sidebar
-
-    const toggleEventMenu = () => {
-        setIsEventOpen(!isEventOpen);
-        if (isEventOpen) {
-            setIsTransactionOpen(false); // Also close transaction when closing eventory manually
-        }
+    const toggleMenu = (label) => {
+        setActiveMenu(prev => (prev === label ? null : label));
+        setActiveSubMenu(null);
     };
 
-    const toggleTransactionMenu = () => {
-        setIsTransactionOpen(!isTransactionOpen);
+    const handleSubmenuClick = (submenu) => {
+        if (submenu.path) {
+            navigate(submenu.path);
+        }
+        if (submenu.subitems) {
+            setActiveSubMenu(prev => (prev === submenu.label ? null : submenu.label));
+        } else {
+            setActiveSubMenu(null);
+        }
     };
 
     useEffect(() => {
         function handleClickOutside(event) {
             if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
-                setIsEventOpen(false);
-                setIsTransactionOpen(false);
+                setActiveMenu(null);
+                setActiveSubMenu(null);
             }
         }
 
@@ -36,87 +42,58 @@ const Sidebar = () => {
         <div className="relative" ref={sidebarRef}>
             {/* Main Sidebar */}
             <div className="w-40 bg-gray-200 min-h-screen p-4 flex flex-col relative z-20">
-                <div
-                    onClick={toggleEventMenu}
-                    className="cursor-pointer text-2xl font-bold text-center mb-4 mt-5"
-                >
-                    Inventory
-                </div>
+                {menus.map((menu, index) => (
+                    <div
+                        key={index}
+                        onClick={() => toggleMenu(menu.label)}
+                        className="cursor-pointer text-2xl font-bold text-center mb-4 mt-5"
+                    >
+                        {menu.label}
+                    </div>
+                ))}
             </div>
 
             {/* Sub Sidebar */}
-            {isEventOpen && (
-                <div className="absolute top-20 left-40 bg-gray-100 shadow-lg p-4 rounded-md flex flex-col gap-3 w-60 z-10">
-                    {/* Transaction Link */}
-                    <Link
-                        to="/model?model=Transaction"
-                        onClick={toggleTransactionMenu}
-                        className="cursor-pointer text-xl font-medium text-gray-700 hover:underline"
+            {menus.map((menu, i) =>
+                activeMenu === menu.label && (
+                    <div
+                        key={i}
+                        className="absolute top-20 left-40 bg-gray-100 shadow-lg p-4 rounded-md flex flex-col gap-3 w-60 z-10"
                     >
-                        Transaction
-                    </Link>
+                        {menu.submenus.map((submenu, j) => (
+                            <div key={j}>
+                                {/* Submenu label and toggle/click */}
+                                <div
+                                    onClick={() => handleSubmenuClick(submenu)}
+                                    className="flex items-center justify-between cursor-pointer"
+                                >
+                                    <span className="text-xl font-medium  text-gray-700 hover:underline">
+                                        {submenu.label}
+                                    </span>
+                                    {submenu.subitems && (
+                                        <span className="ml-2 text-sm text-blue-600">
+                                            {activeSubMenu === submenu.label ? '-' : '+'}
+                                        </span>
+                                    )}
+                                </div>
 
-                    {/* Transaction Sub-items */}
-                    {isTransactionOpen && (
-                        <div className="flex flex-col gap-2 mt-2 pl-4">
-                            <div
-                                 className="text-base text-gray-600 hover:underline"
-                            >
-                                Purchase
+                                {/* Subitems */}
+                                {submenu.subitems && activeSubMenu === submenu.label && (
+                                    <div className="ml-4 mt-2 flex flex-col gap-2 cursor-pointer">
+                                        {submenu.subitems.map((item, k) => (
+                                            <div
+                                                key={k}
+                                                className="text-base text-gray-600 hover:underline"
+                                            >
+                                                {item.label}
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
                             </div>
-                            <div
-                                
-                                className="text-base text-gray-600 hover:underline"
-                            >
-                                Sales
-                            </div>
-                            <div
-                                 
-                                className="text-base text-gray-600 hover:underline"
-                            >
-                                Stocks
-                            </div>
-                            <div
-                                 
-                                className="text-base text-gray-600 hover:underline"
-                            >
-                               Hold/Unhold Stock
-                            </div>
-                            <div
-                                 
-                                 className="text-base text-gray-600 hover:underline"
-                             >
-                                Sales Screens
-                             </div>
-                             <div
-                                 
-                                 className="text-base text-gray-600 hover:underline"
-                             >
-                                Purchase Screens
-                             </div>
-                             <div
-                                 
-                                 className="text-base text-gray-600 hover:underline"
-                             >
-                                 Stock Reconciliation
-                             </div>
-                             <div
-                                 
-                                 className="text-base text-gray-600 hover:underline"
-                             >
-                                Stock Allocation
-                             </div>
-                        </div>
-                    )}
-
-                    {/* Other Main Links */}
-                    <div className="cursor-pointer text-xl font-medium text-gray-700 hover:underline">
-                        Reports
+                        ))}
                     </div>
-                    <div className="cursor-pointer text-xl font-medium text-gray-700 hover:underline">
-                        Order Management
-                    </div>
-                </div>
+                )
             )}
         </div>
     );
