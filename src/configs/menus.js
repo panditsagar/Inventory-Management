@@ -1,7 +1,7 @@
 // menu.js
 const menus = [
   {
-    label: "Inventory",
+    label: "Inventory Management",
     category: "Main",
     submenus: [
       {
