@@ -61,15 +61,15 @@ const menus = [
     submenus: [
       {
         label: "Masters",
-        path: "/model?model=FinancialAccounting/Masters",
+        path: "/masters",
         subitems: [
           {
             label: "COA (Chart of Accounts)",
-            path: "/model?model=FinancialAccounting/Masters/COA"
+            path: "/masters/COA"
           },
           {
             label: "Products",
-            path: "/model?model=FinancialAccounting/Masters/products"
+            path: "/masters/products"
           },
          ]
       },
