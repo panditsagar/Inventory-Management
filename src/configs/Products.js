@@ -17,6 +17,12 @@ const Products = {
             label: 'Inventory', 
             type: 'string', 
         },
+
+        { 
+            name: 'accounting', 
+            label: 'Accounting', 
+            type: 'string', 
+        },
     ]
 };
 export default Products;
