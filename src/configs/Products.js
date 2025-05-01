@@ -2,6 +2,13 @@ const Products = {
     name: 'Products',
     title: 'Products',
     fields: [
+        
+        { 
+            name: 'product', 
+            label: 'Product', 
+            type: 'String', 
+         },
+
         { 
             name: 'general_information', 
             label: 'General Information', 
