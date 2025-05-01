@@ -1,6 +1,6 @@
 const Products = {
     name: 'Products',
-    title: 'Products Details',
+    title: 'Products',
     fields: [
         { 
             name: 'general_information', 
