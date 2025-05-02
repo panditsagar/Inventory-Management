@@ -9,7 +9,11 @@ const menus = [
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         subitems: [
+=======
+        subitems: [ // You can keep this if needed later
+>>>>>>> Stashed changes
 =======
         subitems: [ // You can keep this if needed later
 >>>>>>> Stashed changes
