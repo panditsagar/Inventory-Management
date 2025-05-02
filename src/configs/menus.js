@@ -6,7 +6,11 @@ const menus = [
     submenus: [
       {
         label: "Masters",
+<<<<<<< Updated upstream
         subitems: [
+=======
+        subitems: [ // You can keep this if needed later
+>>>>>>> Stashed changes
           {
             label: "Item",
                   subitems: [

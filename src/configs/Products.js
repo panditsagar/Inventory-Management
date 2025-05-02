@@ -9,16 +9,18 @@ const Products = {
             type: 'String', 
          },
 
-        { 
+         { 
             name: 'general_information', 
             label: 'General Information', 
-            type: 'dropdown', 
-         },
+            type: 'string', 
+        }, 
+         
         { 
             name: 'attributes_variants', 
             label: 'Attributes and Variants', 
             type: 'string', 
         }, 
+        
         { 
             name: 'inventory', 
             label: 'Inventory', 
