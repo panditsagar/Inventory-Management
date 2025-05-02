@@ -1,6 +1,25 @@
 // menu.js
 const menus = [
   {
+    label: "Home",
+    category: "Main",
+    submenus: [
+      {
+        label: "Masters",
+        subitems: [
+          {
+            label: "Item",
+                  subitems: [
+              {
+                label: "Item",
+                path: "/model?model=Item"
+                
+              },
+            ],
+            },
+          ],
+      },
+    ],
     label: "Inventory Management",
     category: "Main",
     submenus: [
@@ -61,15 +80,15 @@ const menus = [
     submenus: [
       {
         label: "Masters",
-        path: "/masters",
+        path: "/model?model=FinancialAccounting/Masters",
         subitems: [
           {
             label: "COA (Chart of Accounts)",
-            path: "/masters/COA"
+            path: "/model?model=FinancialAccounting/Masters/COA"
           },
           {
             label: "Products",
-            path: "/masters/products"
+            path: "/model?model=FinancialAccounting/Masters/products"
           },
          ]
       },
