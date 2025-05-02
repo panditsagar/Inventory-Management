@@ -1,5 +1,6 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         const Item = {
         'name': 'Item',
         'title': 'Item',
@@ -138,6 +139,8 @@
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 const Products = {
     name: 'Products',
     title: 'Products',
@@ -175,6 +178,10 @@ const Products = {
     ]
 };
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+export default Products;
+>>>>>>> Stashed changes
+=======
 export default Products;
 >>>>>>> Stashed changes
 =======
