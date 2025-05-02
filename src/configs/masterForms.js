@@ -1,5 +1,6 @@
-// configs/masterForms.js
-  const masterForms = {
+import Products from "./Products";
+
+const masterForms = {
     'Employee': {
       title: 'Add Employee',
       fields: [
@@ -15,6 +16,11 @@
         { name: 'departmentName', label: 'Department Name', type: 'text' },
         { name: 'head', label: 'Department Head', type: 'text' },
       ],
+    },
+
+    'Products':{
+      label: 'Add Product',
+      model: Products // 🔗 Connect the imported model directly here
     }
   };
   

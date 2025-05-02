@@ -57,7 +57,7 @@ const menus = [
   },
   { // Finance Management Module
     label: "Financial Accounting",
-    category: "Finance",
+    category: "Finance Management",
     submenus: [
       {
         label: "Masters",
