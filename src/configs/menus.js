@@ -20,6 +20,9 @@ const menus = [
           ],
       },
     ],
+  },
+  
+  {
     label: "Inventory Management",
     category: "Main",
     submenus: [
